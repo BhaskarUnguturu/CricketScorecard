@@ -1,0 +1,50 @@
+# Dockerfile has been added in all micro-services, you need to dockerize all micro-services and add docker-compose.yml file
+version: '3.3'
+services:
+  CmatchEditProfile:
+    build:
+      dockerfile: Dockerfile
+      context: ./CmatchEditProfile
+    container_name: cmatcheditprofile
+    restart: always
+    network_mode: host
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql-service
+ CmatchLogin:
+    build:
+      dockerfile: Dockerfile
+      context: ./CmatchLogin
+    container_name: cmatchlogin
+    restart: always
+    network_mode: host
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysql-service
+CmatchRegister:
+    build:
+      dockerfile: Dockerfile
+      context: ./CmatchRegister
+    container_name: cmatchregister
+    restart: always
+    network_mode: host
+    ports:
+      - "8083:8083"
+    depends_on:
+      - mysql-service
+
+  CmatchRecommend:
+    build:
+      dockerfile: Dockerfile
+      context: ./ CmatchRecommend
+    container_name:  cmatchrecommend
+    restart: always
+    network_mode: host
+    ports:
+        - "8082:8082"
+    depends_on:
+        - mongo-service
+
+   
